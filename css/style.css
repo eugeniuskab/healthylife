@@ -1,0 +1,129 @@
+:root {
+    --bs-primary: darkolivegreen;
+    --bs-primary-rgb: 85, 107, 47; /* darkolivegreen */
+    --bs-info-rgb: 189, 183, 107;  /* darkkhaki */
+    --bs-success-rgb: 245, 245, 245; /* whitesmoke */
+    --bs-light-rgb: 255, 248, 220; /* cornsilk */
+    --bs-dark-rgb: 211, 211, 211; /* lightgray */
+    --bs-warning-rgb: 245, 245, 220; /* beige */
+    --bs-danger-rgb: 105, 105, 105; /* dimgray */
+    /* --bs-muted-rgb: 51, 51, 51; darkgray */
+    --bs-secondary-rgb: 248, 244, 230; /* lightbeige */
+    --bs-body-bg: whitesmoke;
+}
+
+.navbar {
+    z-index: 1000;
+}
+
+body {
+  padding-top: 60px;
+}
+
+.btn-primary {
+    --bs-btn-bg: var(--bs-primary);
+    --bs-btn-border-color: var(--bs-primary);
+    --bs-btn-hover-bg: rgb(var(--bs-info-rgb));
+    --bs-btn-hover-border-color: rgb(var(--bs-info-rgb));
+}
+
+.carousel-custom-img {
+    width: 80%;
+    height: 500px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+    border-radius: 20px;
+}
+
+.carousel-indicators [data-bs-target] {
+    width: 40px;
+    height: 6px;
+    background-color: whitesmoke !important;
+    opacity: 0.6;
+}
+
+.carousel-indicators .active {
+    background-color: darkolivegreen !important;
+    opacity: 1;
+}
+
+.carousel-control-prev-icon {
+    filter: invert(30%) sepia(70%) saturate(300%) hue-rotate(80deg) brightness(60%) contrast(90%);
+}
+
+.carousel-control-next-icon {
+    filter: invert(30%) sepia(70%) saturate(300%) hue-rotate(80deg) brightness(60%) contrast(90%);
+}
+
+.table-rounded {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    overflow: hidden;
+    border-collapse: separate;
+}
+
+.table-rounded th,
+.table-rounded td {
+    border: none;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: darkolivegreen;
+    color: white;
+}
+
+.accordion-button:focus {
+    box-shadow: 0 0 0 0.25rem rgba(85, 107, 47, 0.25);
+    outline: none;
+}
+
+.check-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 28px;
+    height: 28px;
+    border: 2px solid darkolivegreen;
+    border-radius: 6px;
+    background: white;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.check-btn.checked {
+    background: whitesmoke;
+    border-color: darkolivegreen;
+}
+
+.check-btn.checked::after {
+    content: "✓";
+    color: darkolivegreen;
+    font-size: 20px;
+    position: absolute;
+    top: -2px;
+    left: 5px;
+}
+
+.form-check-input {
+    accent-color: darkolivegreen !important;
+    -webkit-appearance: checkbox;
+    -moz-appearance: checkbox;
+    appearance: checkbox;
+}
+
+.form-check-input:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+footer a {
+    color: darkolivegreen;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: darkkhaki;
+    text-decoration: underline;
+}
