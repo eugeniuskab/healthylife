@@ -11,3 +11,4 @@ if (!in_array($page, $allowedPages)) {
 include 'includes/header.php';
 include "views/$page.php";
 include 'includes/footer.php';
+?>

@@ -10,5 +10,24 @@
 <body>
 
 <header>
-    <h1>Healthy Life Tracker</h1>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex gap-2" href="home.html">
+                <img src="img/logo.png" alt="Logo" height="32">
+                <span>Healthy Life</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.php?page=home">Domov</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.php?page=diet">Jedálniček</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.php?page=exercise">Šport</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.php?page=contact">Kontakt</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 </header>
