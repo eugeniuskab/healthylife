@@ -1,3 +1,13 @@
+<?php
+require_once 'config/Database.php';
+require_once 'models/Meal.php';
+
+$db = new Database();
+$conn = $db->connect();
+
+$meal = new Meal($conn);
+$result = $meal->getAll();
+?>
 <div class="container mt-4">
         <h2>Jedálniček</h2>
 
@@ -10,46 +20,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Raňajky</td>
-                    <td>Ovsená kaša s ovocím</td>
-                    <td><span class="badge bg-primary">320 kcal</span></td>
-                </tr>
-                <tr>
-                    <td>Obed</td>
-                    <td>Kuracie prsia s ryžou a zeleninou</td>
-                    <td><span class="badge bg-primary">520 kcal</span></td>
-                </tr>
-                <tr>
-                    <td>Večera</td>
-                    <td>Grilovaný losos s hnedou ryžou a brokolicou</td>
-                    <td><span class="badge bg-primary">450 kcal</span></td>
-                </tr>
-                <tr>
-                    <td>Snack</td>
-                    <td>Grécky jogurt s horkou čokoládou a ovocím</td>
-                    <td><span class="badge bg-primary">200 kcal</span></td>
-                </tr>
-                 <tr>
-                    <td>Raňajky</td>
-                    <td>Smoothie z banánu, špenátu, mandľového mlieka a proteínového prášku, hrsť mandlí</td>
-                    <td><span class="badge bg-primary">450 kcal</span></td>
-                </tr>
-                 <tr>
-                    <td>Obed</td>
-                    <td>Grilované morčačie filéty s pohánkou a dusená zeleninou</td>
-                    <td><span class="badge bg-primary">650 kcal</span></td>
-                </tr>
-                 <tr>
-                    <td>Večera</td>
-                    <td>Vypražaný tofu s ryžou a teriyaki omáčkou</td>
-                    <td><span class="badge bg-primary">620 kcal</span></td>
-                </tr>
-                <tr>
-                    <td>Snack</td>
-                    <td>Celozrnný chlebíček s banánom a arašidovým maslom</td>
-                    <td><span class="badge bg-primary">350 kcal</span></td>
-                </tr>
+                <?php while($row = $result->fetch(PDO::FETCH_ASSOC)) : ?>
+                    <tr>
+                        <td><?php echo $row['meal_type']; ?></td>
+                        <td><?php echo $row['meal_description']; ?></td>
+                        <td>
+                            <span class="badge bg-primary">
+                                <?php echo $row['calories']; ?> kcal
+                            </span>
+                        </td>
+                    </tr>
+                <?php endwhile; ?>
             </tbody>
         </table>
         <!-- tabuľka -->

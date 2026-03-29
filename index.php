@@ -1,5 +1,11 @@
 <?php
 
+require_once 'config/Database.php';
+
+$db = new Database();
+$conn = $db->connect();
+
+
 $page = $_GET['page'] ?? 'home';
 
 $allowedPages = ['home', 'diet', 'exercise', 'contact'];
