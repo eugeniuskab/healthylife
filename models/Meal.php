@@ -28,4 +28,14 @@ class Meal {
 
     return $stmt->execute();
     }
+
+    public function delete($meal_id) {
+    $query = "DELETE FROM " . $this->table . " WHERE meal_id = :meal_id";
+
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindParam(':meal_id', $meal_id);
+
+    return $stmt->execute();
+    }
+
 }

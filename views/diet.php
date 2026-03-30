@@ -7,24 +7,41 @@ $conn = $db->connect();
 
 $meal = new Meal($conn);
 
+$editMeal = null;
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $meal_type = $_POST['meal_type'];
-    $meal_description = $_POST['meal_description'];
-    $calories = $_POST['calories'];
+    if (isset($_POST['delete_id'])) {
 
-    if ($meal->create($meal_type, $meal_description, $calories)) {
-        header("Location: index.php?page=diet");
-        exit;
+        $meal_id = $_POST['delete_id'];
+
+        if ($meal->delete($meal_id)) {
+            header("Location: index.php?page=diet");
+            exit;
+        } else {
+            echo "Error deleting meal";
+        }
+
     } else {
-        echo "Error adding meal";
+
+        $meal_type = $_POST['meal_type'];
+        $meal_description = $_POST['meal_description'];
+        $calories = $_POST['calories'];
+
+        if ($meal->create($meal_type, $meal_description, $calories)) {
+            header("Location: index.php?page=diet");
+            exit;
+        } else {
+            echo "Error adding meal";
+        }
     }
 }
 
 $result = $meal->getAll();
 ?>
 
-<div class="container mt-4">
+    <div class="container mt-4">
         <h2>Jedálniček</h2>
 
         <table class="table table-striped mt-3 table-rounded">
@@ -33,6 +50,7 @@ $result = $meal->getAll();
                     <th>Jedlo</th>
                     <th>Popis</th>
                     <th>Kalórie</th>
+                    <th>Vymazať</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,24 +58,40 @@ $result = $meal->getAll();
                     <tr>
                         <td><?php echo $row['meal_type']; ?></td>
                         <td><?php echo $row['meal_description']; ?></td>
+                            <td>
+                                <span class="badge bg-primary">
+                                    <?php echo $row['calories']; ?> kcal
+                                </span>
+                            </td>
+                        
                         <td>
-                            <span class="badge bg-primary">
-                                <?php echo $row['calories']; ?> kcal
-                            </span>
+                            <form method="POST" action="index.php?page=diet" style="display:inline;">
+                                <input type="hidden" name="delete_id" value="<?php echo $row['meal_id']; ?>">
+                                <button type="submit" class="btn btn-outline-danger btn-sm px-2 py-0"
+                                    onclick="return confirm('Ste si istý?')">
+                                    Delete
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 <?php endwhile; ?>
             </tbody>
         </table>
 
-        <h3 class="mt-5">Pridať jedlo</h3>
-        <form method="POST" action="index.php?page=diet">
+        <h3 class="mt-5 mb-3">Pridať jedlo</h3>
+        <form method="POST" action="index.php?page=diet" class="p-3 border rounded">
 
-            <input type="text" name="meal_type" placeholder="Typ (Raňajky, Obed...)" required class="form-control mb-2">
+            <div class="mb-3">
+                <input type="text" name="meal_type" placeholder="Typ (Raňajky, Obed...)" required class="form-control bg-white">
+            </div>
 
-            <input type="text" name="meal_description" placeholder="Jedlo" required class="form-control mb-2">
+            <div class="mb-3">
+                <input type="text" name="meal_description" placeholder="Jedlo" required class="form-control bg-white">
+            </div>
 
-            <input type="number" name="calories" placeholder="Kalórie" required class="form-control mb-2">
+            <div class="mb-3">
+                <input type="number" name="calories" placeholder="Kalórie" required class="form-control bg-white">
+            </div>
 
             <button type="submit" class="btn btn-primary">Pridať</button>
         </form>
