@@ -18,6 +18,14 @@ if (!in_array($page, $allowedPages)) {
 }
 
 include 'includes/header.php';
-include "views/$page.php";
+if ($page === 'diet') {
+
+    require_once 'controllers/DietController.php';
+    $controller = new DietController();
+    $controller->index();
+
+} else {
+    include "views/$page.php";
+}
 include 'includes/footer.php';
 ?>
