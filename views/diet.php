@@ -6,8 +6,24 @@ $db = new Database();
 $conn = $db->connect();
 
 $meal = new Meal($conn);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $meal_type = $_POST['meal_type'];
+    $meal_description = $_POST['meal_description'];
+    $calories = $_POST['calories'];
+
+    if ($meal->create($meal_type, $meal_description, $calories)) {
+        header("Location: index.php?page=diet");
+        exit;
+    } else {
+        echo "Error adding meal";
+    }
+}
+
 $result = $meal->getAll();
 ?>
+
 <div class="container mt-4">
         <h2>Jedálniček</h2>
 
@@ -33,6 +49,19 @@ $result = $meal->getAll();
                 <?php endwhile; ?>
             </tbody>
         </table>
+
+        <h3 class="mt-5">Pridať jedlo</h3>
+        <form method="POST" action="index.php?page=diet">
+
+            <input type="text" name="meal_type" placeholder="Typ (Raňajky, Obed...)" required class="form-control mb-2">
+
+            <input type="text" name="meal_description" placeholder="Jedlo" required class="form-control mb-2">
+
+            <input type="number" name="calories" placeholder="Kalórie" required class="form-control mb-2">
+
+            <button type="submit" class="btn btn-primary">Pridať</button>
+        </form>
+
         <!-- tabuľka -->
         <h3 class="mt-5">Odporúčané potraviny</h3>
 
