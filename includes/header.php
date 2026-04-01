@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,12 +10,12 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
         <div class="container">
-            <a class="navbar-brand d-flex gap-2" href="home.html">
+            <a class="navbar-brand d-flex gap-2" href="index.php?page=home">
                 <img src="img/logo.png" alt="Logo" height="32">
                 <span>Healthy Life</span>
             </a>
@@ -26,6 +29,25 @@
                     <li class="nav-item"><a class="nav-link" href="index.php?page=diet">Jedálniček</a></li>
                     <li class="nav-item"><a class="nav-link" href="index.php?page=exercise">Šport</a></li>
                     <li class="nav-item"><a class="nav-link" href="index.php?page=contact">Kontakt</a></li>
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                    <li class="nav-item d-flex align-items-center ms-3">
+                        <span class="text-white me-2">
+                            <?php echo $_SESSION['username']; ?>
+                        </span>
+                        <a class="btn btn-primary ms-2" href="index.php?page=logout">
+                            Odhlásiť sa
+                        </a>
+                    </li>
+
+                    <?php else: ?>
+
+                    <li class="nav-item ms-3">
+                        <a class="btn btn-primary" href="index.php?page=login">
+                            Prihlásiť sa
+                        </a>
+                    </li>
+
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>
