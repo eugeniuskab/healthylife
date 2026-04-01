@@ -8,42 +8,45 @@ class Meal {
         $this->conn = $db;
     }
 
-    public function getAll() {
-        $query = "SELECT * FROM " . $this->table;
+    public function getAll($user_id) {
+        $query = "SELECT * FROM " . $this->table . " WHERE user_id = :user_id";
         $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':user_id', $user_id);
         $stmt->execute();
 
         return $stmt;
     }
 
-    public function create($meal_type, $meal_description, $calories) {
-    $query = "INSERT INTO " . $this->table . " (meal_type, meal_description, calories) 
-              VALUES (:meal_type, :meal_description, :calories)";
+    public function create($meal_type, $meal_description, $calories, $user_id) {
+    $query = "INSERT INTO " . $this->table . " (meal_type, meal_description, calories, user_id) 
+              VALUES (:meal_type, :meal_description, :calories, :user_id)";
 
     $stmt = $this->conn->prepare($query);
 
     $stmt->bindParam(':meal_type', $meal_type);
     $stmt->bindParam(':meal_description', $meal_description);
     $stmt->bindParam(':calories', $calories);
+    $stmt->bindParam(':user_id', $user_id);
 
     return $stmt->execute();
     }
 
-    public function delete($meal_id) {
-    $query = "DELETE FROM " . $this->table . " WHERE meal_id = :meal_id";
+    public function delete($meal_id, $user_id) {
+    $query = "DELETE FROM " . $this->table . " WHERE meal_id = :meal_id AND user_id = :user_id";
 
     $stmt = $this->conn->prepare($query);
     $stmt->bindParam(':meal_id', $meal_id);
+    $stmt->bindParam(':user_id', $user_id);
 
     return $stmt->execute();
     }
 
-    public function update($meal_id, $type, $desc, $calories) {
+    public function update($meal_id, $type, $desc, $calories, $user_id) {
     $query = "UPDATE " . $this->table . " 
               SET meal_type = :type,
                   meal_description = :desc,
                   calories = :calories
-              WHERE meal_id = :id";
+              WHERE meal_id = :id AND user_id = :user_id";
 
     $stmt = $this->conn->prepare($query);
 
@@ -51,15 +54,17 @@ class Meal {
     $stmt->bindParam(':desc', $desc);
     $stmt->bindParam(':calories', $calories);
     $stmt->bindParam(':id', $meal_id);
+    $stmt->bindParam(':user_id', $user_id);
 
     return $stmt->execute();
     }
 
-    public function getById($meal_id) {
-    $query = "SELECT * FROM " . $this->table . " WHERE meal_id = :meal_id";
+    public function getById($meal_id, $user_id) {
+    $query = "SELECT * FROM " . $this->table . " WHERE meal_id = :meal_id AND user_id = :user_id";
 
     $stmt = $this->conn->prepare($query);
     $stmt->bindParam(':meal_id', $meal_id);
+    $stmt->bindParam(':user_id', $user_id);
     $stmt->execute();
 
     return $stmt->fetch(PDO::FETCH_ASSOC);

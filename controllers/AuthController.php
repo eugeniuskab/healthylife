@@ -10,8 +10,6 @@ class AuthController {
         $db = new Database();
         $conn = $db->connect();
         $this->user = new User($conn);
-
-        session_start();
     }
 
     public function register() {
@@ -57,7 +55,6 @@ class AuthController {
 
     public function logout() {
 
-        session_start();
         session_destroy();
 
         header("Location: index.php?page=login");

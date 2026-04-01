@@ -14,11 +14,18 @@ class DietController {
 
     public function index() {
 
+        if (!isset($_SESSION['user_id'])) {
+        header("Location: index.php?page=login");
+        exit;
+        }
+
+        $user_id = $_SESSION['user_id'];
+
         // POST (create / update / delete)
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if (isset($_POST['delete_id'])) {
-                $this->meal->delete($_POST['delete_id']);
+                $this->meal->delete($_POST['delete_id'], $user_id);
                 header("Location: index.php?page=diet");
                 exit;
             }
@@ -28,7 +35,8 @@ class DietController {
                     $_POST['meal_id'],
                     $_POST['meal_type'],
                     $_POST['meal_description'],
-                    $_POST['calories']
+                    $_POST['calories'],
+                    $user_id
                 );
                 header("Location: index.php?page=diet");
                 exit;
@@ -37,7 +45,8 @@ class DietController {
             $this->meal->create(
                 $_POST['meal_type'],
                 $_POST['meal_description'],
-                $_POST['calories']
+                $_POST['calories'],
+                $user_id
             );
 
             header("Location: index.php?page=diet");
@@ -48,11 +57,11 @@ class DietController {
         $editMeal = null;
 
         if (isset($_GET['edit'])) {
-            $editMeal = $this->meal->getById($_GET['edit']);
+            $editMeal = $this->meal->getById($_GET['edit'], $user_id);
         }
 
         // view
-        $result = $this->meal->getAll();
+        $result = $this->meal->getAll($user_id);
 
         require_once 'views/diet.php';
     }

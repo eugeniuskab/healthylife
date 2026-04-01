@@ -11,7 +11,7 @@
                            class="form-control mb-3">
 
                     <input type="password" name="password"
-                           placeholder="Password"
+                           placeholder="Heslo"
                            required
                            class="form-control mb-3">
 
@@ -19,6 +19,10 @@
                         Zaregistrovať sa
                     </button>
                 </form>
+                <a href="index.php?page=register"
+                   class="btn btn-outline-secondary w-100 mt-3">
+                    Prihlásiť sa
+                </a>
             </div>
         </div>
     </div>
