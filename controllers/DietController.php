@@ -20,24 +20,41 @@ class DietController {
         }
 
         $user_id = $_SESSION['user_id'];
+        $role = $_SESSION['role'];
 
         // POST (create / update / delete)
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if (isset($_POST['delete_id'])) {
-                $this->meal->delete($_POST['delete_id'], $user_id);
+                if ($role === 'admin') {
+                    $this->meal->deleteAsAdmin($_POST['delete_id']);
+                } else {
+                    $this->meal->delete($_POST['delete_id'], $user_id);
+                }
+
                 header("Location: index.php?page=diet");
                 exit;
             }
 
             if (!empty($_POST['meal_id'])) {
-                $this->meal->update(
-                    $_POST['meal_id'],
-                    $_POST['meal_type'],
-                    $_POST['meal_description'],
-                    $_POST['calories'],
-                    $user_id
-                );
+
+                if ($role === 'admin') {
+                    $this->meal->updateAsAdmin(
+                        $_POST['meal_id'],
+                        $_POST['meal_type'],
+                        $_POST['meal_description'],
+                        $_POST['calories']
+                    );
+                } else {
+                    $this->meal->update(
+                        $_POST['meal_id'],
+                        $_POST['meal_type'],
+                        $_POST['meal_description'],
+                        $_POST['calories'],
+                        $user_id
+                    );
+                }
+
                 header("Location: index.php?page=diet");
                 exit;
             }
@@ -61,7 +78,11 @@ class DietController {
         }
 
         // view
-        $result = $this->meal->getAll($user_id);
+        if ($role === 'admin') {
+            $result = $this->meal->getAllAdmin();
+        } else {
+            $result = $this->meal->getAll($user_id);
+        }
 
         require_once 'views/diet.php';
     }

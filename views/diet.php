@@ -9,6 +9,9 @@
                     <th>Kalórie</th>
                     <th>Upraviť</th>
                     <th>Vymazať</th>
+                    <?php if ($_SESSION['role'] === 'admin') : ?>
+                        <th>Používateľ</th>
+                    <?php endif; ?>
                 </tr>
             </thead>
             <tbody>
@@ -38,6 +41,9 @@
                                 </button>
                             </form>
                         </td>
+                        <?php if ($_SESSION['role'] === 'admin') : ?>
+                            <td><?php echo $row['username']; ?></td>
+                        <?php endif; ?>
                     </tr>
                 <?php endwhile; ?>
             </tbody>

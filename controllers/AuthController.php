@@ -30,6 +30,8 @@ class AuthController {
 
     public function login() {
 
+        $error = null;
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $username = $_POST['username'];
@@ -41,12 +43,13 @@ class AuthController {
 
                 $_SESSION['user_id'] = $user['user_id'];
                 $_SESSION['username'] = $user['username'];
+                $_SESSION['role'] = $user['role'];
 
                 header("Location: index.php?page=diet");
                 exit;
 
             } else {
-                echo "Invalid credentials";
+                $error = "Používateľské meno alebo heslo je nesprávne, prosím skúste znova";
             }
         }
 

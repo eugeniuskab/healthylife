@@ -69,4 +69,41 @@ class Meal {
 
     return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function getAllAdmin() {
+    $query = "SELECT meals.*, users.username 
+              FROM meals
+              JOIN users ON meals.user_id = users.user_id";
+
+    $stmt = $this->conn->prepare($query);
+    $stmt->execute();
+
+    return $stmt;
+    }
+
+    public function deleteAsAdmin($meal_id) {
+    $query = "DELETE FROM " . $this->table . " WHERE meal_id = :meal_id";
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindParam(':meal_id', $meal_id);
+
+    return $stmt->execute();
+    }
+
+    public function updateAsAdmin($meal_id, $type, $desc, $calories) {
+    $query = "UPDATE " . $this->table . " 
+              SET meal_type = :type,
+                  meal_description = :desc,
+                  calories = :calories
+              WHERE meal_id = :meal_id";
+
+    $stmt = $this->conn->prepare($query);
+
+    $stmt->bindParam(':type', $type);
+    $stmt->bindParam(':desc', $desc);
+    $stmt->bindParam(':calories', $calories);
+    $stmt->bindParam(':meal_id', $meal_id);
+
+    return $stmt->execute();
+    }
+
 }
