@@ -1,0 +1,2 @@
+[2026-04-03 18:56:38] Meno: test | Email: test@gmail.com | Správa: test
+[2026-04-03 19:03:10] Meno: test1 | Email: test@gmail.com | Správa: test1

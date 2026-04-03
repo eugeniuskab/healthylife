@@ -26,33 +26,33 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("contactForm");
     if (!form) return;
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (form) {
+        form.addEventListener("submit", (e) => {
 
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-
-        const meno = document.getElementById("meno").value.trim();
+        const name = document.getElementById("name").value.trim();
         const email = document.getElementById("email").value.trim();
-        const sprava = document.getElementById("sprava").value.trim();
+        const message = document.getElementById("message").value.trim();
         const checkbox = document.getElementById("gdpr").checked;
 
-        if (!meno || !sprava) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!name || !message) {
             alert("Vyplňte všetky polia.");
+            e.preventDefault();
             return;
         }
 
         if (!emailRegex.test(email)) {
             alert("Zadajte platný e-mail.");
+            e.preventDefault();
             return;
         }
 
         if (!checkbox) {
             alert("Musíte súhlasiť so spracovaním osobných údajov.");
+            e.preventDefault();
             return;
         }
-
-        window.location.href = "thankyou.html";
-
-        form.reset();
-    });
+        });
+    }
 });

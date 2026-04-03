@@ -1,15 +1,15 @@
 <div class="container mt-4">
         <h2>Kontakt</h2>
 
-        <form id="contactForm" class="mt-3">
+        <form method="POST" action="index.php?page=contact" id="contactForm" class="mt-3">
             <label class="form-label">Meno</label>
-            <input id="meno" class="form-control bg-white" type="text">
+            <input name="name" id="name" class="form-control bg-white" type="text">
 
             <label class="form-label mt-3">Email</label>
-            <input id="email" class="form-control bg-white" type="email">
+            <input name="email" id="email" class="form-control bg-white" type="email">
 
             <label class="form-label mt-3">Správa</label>
-            <textarea id="sprava" class="form-control bg-white" rows="4" placeholder="Napíšte svoju správu..."></textarea>
+            <textarea name="message" id="message" class="form-control bg-white" rows="4" placeholder="Napíšte svoju správu..."></textarea>
 
             <div class="form-check mt-3">
                 <input class="form-check-input" type="checkbox" id="gdpr">

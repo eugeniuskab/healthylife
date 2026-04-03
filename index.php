@@ -8,10 +8,25 @@ require_once 'config/Database.php';
 $db = new Database();
 $conn = $db->connect();
 
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['page']) && $_GET['page'] === 'contact') {
+    
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $message = $_POST['message'];
+    $date = date('Y-m-d H:i:s');
+
+    $record = "[$date] Meno: $name | Email: $email | Správa: $message" . PHP_EOL;
+
+    file_put_contents("data/messages.txt", $record, FILE_APPEND);
+
+    header("Location: index.php?page=thankyou");
+    exit();
+}
+
 
 $page = $_GET['page'] ?? 'home';
 
-$allowedPages = ['home', 'diet', 'exercise', 'contact', 'login', 'register', 'logout'];
+$allowedPages = ['home', 'diet', 'exercise', 'contact', 'login', 'register', 'logout', 'thankyou'];
 
 if (!in_array($page, $allowedPages)) {
     $page = 'home';
