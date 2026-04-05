@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['page']) && $_GET['page'
 
 $page = $_GET['page'] ?? 'home';
 
-$allowedPages = ['home', 'diet', 'exercise', 'contact', 'login', 'register', 'logout', 'thankyou'];
+$allowedPages = ['home', 'diet', 'exercise', 'contact', 'login', 'register', 'logout', 'thankyou', 'admin'];
 
 if (!in_array($page, $allowedPages)) {
     $page = 'home';
@@ -60,6 +60,12 @@ if ($page === 'diet') {
     require_once 'controllers/AuthController.php';
     $controller = new AuthController();
     $controller->logout();
+
+} elseif ($page === 'admin') {
+
+    require_once 'controllers/AdminController.php';
+    $controller = new AdminController();
+    $controller->index();
 
 } else {
 

@@ -26,15 +26,20 @@
                     <li class="nav-item"><a class="nav-link" href="index.php?page=diet">Jedálniček</a></li>
                     <li class="nav-item"><a class="nav-link" href="index.php?page=exercise">Šport</a></li>
                     <li class="nav-item"><a class="nav-link" href="index.php?page=contact">Kontakt</a></li>
+                    <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php?page=admin">Admin Panel</a>
+                        </li>
+                    <?php endif; ?>
                     <?php if (isset($_SESSION['user_id'])): ?>
-                    <li class="nav-item d-flex align-items-center ms-3">
-                        <span class="text-white me-2">
-                            <?php echo $_SESSION['username']; ?>
-                        </span>
-                        <a class="btn btn-primary ms-2" href="index.php?page=logout">
-                            Odhlásiť sa
-                        </a>
-                    </li>
+                        <li class="nav-item d-flex align-items-center ms-3">
+                            <span class="text-white me-2">
+                                <?php echo $_SESSION['username']; ?>
+                            </span>
+                            <a class="btn btn-primary ms-2" href="index.php?page=logout">
+                                Odhlásiť sa
+                            </a>
+                        </li>
 
                     <?php else: ?>
 

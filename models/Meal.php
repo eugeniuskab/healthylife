@@ -106,4 +106,14 @@ class Meal {
     return $stmt->execute();
     }
 
+    public function getByIdAdmin($meal_id) {
+    $query = "SELECT * FROM " . $this->table . " WHERE meal_id = :meal_id";
+
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindParam(':meal_id', $meal_id);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
 }
