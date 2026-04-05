@@ -73,7 +73,8 @@ class Meal {
     public function getAllAdmin() {
     $query = "SELECT meals.*, users.username 
               FROM meals
-              JOIN users ON meals.user_id = users.user_id";
+              JOIN users ON meals.user_id = users.user_id
+              ORDER BY meals.meal_id DESC";
 
     $stmt = $this->conn->prepare($query);
     $stmt->execute();
@@ -114,6 +115,58 @@ class Meal {
     $stmt->execute();
 
     return $stmt->fetch(PDO::FETCH_ASSOC);
-}
+    }
 
+    public function countAll() {
+    $query = "SELECT COUNT(*) as total FROM " . $this->table;
+    $stmt = $this->conn->prepare($query);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+    }
+
+    public function getTotalCalories() {
+    $query = "SELECT SUM(calories) as total FROM " . $this->table;
+    $stmt = $this->conn->prepare($query);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC)['total'] ?? 0;
+    }
+
+    public function getMealsPerUser() {
+    $query = "
+        SELECT users.username, COUNT(meals.meal_id) as total_meals
+        FROM users
+        LEFT JOIN meals ON users.user_id = meals.user_id
+        GROUP BY users.user_id
+        ORDER BY total_meals DESC";
+
+    $stmt = $this->conn->prepare($query);
+    $stmt->execute();
+
+    return $stmt;
+    }
+
+    public function getAverageMealsPerUser() {
+    $query = "
+        SELECT AVG(user_meals) as avg_meals
+        FROM (
+            SELECT COUNT(meal_id) as user_meals
+            FROM meals
+            GROUP BY user_id
+        ) as subquery";
+
+    $stmt = $this->conn->prepare($query);
+    $stmt->execute();
+
+    return round($stmt->fetch(PDO::FETCH_ASSOC)['avg_meals'], 2);
+    }
+
+    public function getAverageCalories() {
+    $query = "SELECT AVG(calories) as avg_calories FROM " . $this->table;
+    $stmt = $this->conn->prepare($query);
+    $stmt->execute();
+
+    return round($stmt->fetch(PDO::FETCH_ASSOC)['avg_calories'], 2);
+    }
 }

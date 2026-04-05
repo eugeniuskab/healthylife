@@ -28,7 +28,7 @@
                     <li class="nav-item"><a class="nav-link" href="index.php?page=contact">Kontakt</a></li>
                     <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?page=admin">Admin Panel</a>
+                            <a class="nav-link" href="index.php?page=admin">Administrácia</a>
                         </li>
                     <?php endif; ?>
                     <?php if (isset($_SESSION['user_id'])): ?>

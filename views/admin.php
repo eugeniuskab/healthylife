@@ -1,7 +1,53 @@
 <div class="container mt-4">
 
-    <h2 class="mt-4">Admin panel</h2>
-    <table class="table table-striped mt-3 table-rounded">
+    <h2 class="mb-4">Prehľad systému</h2>
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="card text-center p-3 shadow">
+                <h5>Používatelia</h5>
+                <h2><?php echo $totalUsers; ?></h2>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-center p-3 shadow">
+                <h5>Jedlá</h5>
+                <h2><?php echo $totalMeals; ?></h2>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-center p-3 shadow">
+                <h5>Správy</h5>
+                <h2><?php echo $totalMessages; ?></h2>
+            </div>
+        </div>
+
+        <div class="col-md-4 mt-3">
+            <div class="card text-center p-3 shadow">
+                <h5>Kalórie spolu</h5>
+                <h2><?php echo $totalCalories; ?> kcal</h2>
+            </div>
+        </div>
+
+        <div class="col-md-4 mt-3">
+            <div class="card text-center p-3 shadow">
+                <h5>Priemer jedál na používateľa</h5>
+                <h2><?php echo $avgMeals; ?></h2>
+            </div>
+        </div>
+
+        <div class="col-md-4 mt-3">
+            <div class="card text-center p-3 shadow">
+                <h5>Priemerné kalórie na jedlo</h5>
+                <h2><?php echo $avgCalories; ?> kcal</h2>
+            </div>
+        </div>
+    </div>
+
+    
+    <table class="table table-striped mt-4 table-rounded">
         <thead class="table-dark">
             <tr>
                 <th>Jedlo</th>
@@ -73,8 +119,31 @@
         </button>
     </form>
 
-    <h3 class="mt-5">Správy od používateľov</h3>
+    <h3 class="mt-5">Počet jedál na používateľa</h3>
+    <table class="table table-striped mt-3 table-rounded">
+        <thead class="table-dark">
+            <tr>
+                <th>Používateľ</th>
+                <th>Počet jedál</th>
+            </tr>
+        </thead>
+        <tbody>
 
+            <?php while($row = $mealsPerUser->fetch(PDO::FETCH_ASSOC)) : ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($row['username']); ?></td>
+                    <td>
+                        <span class="badge bg-primary">
+                            <?php echo $row['total_meals']; ?>
+                        </span>
+                    </td>
+                </tr>
+            <?php endwhile; ?>
+
+        </tbody>
+    </table>
+
+    <h3 class="mt-5">Správy od používateľov</h3>
     <?php if (!empty($messages)) : ?>
 
     <table class="table table-striped mt-3 table-rounded">

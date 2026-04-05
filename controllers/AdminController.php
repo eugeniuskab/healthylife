@@ -87,6 +87,19 @@ class AdminController {
             }
         }
 
+        $totalMeals = $this->meal->countAll();
+        $totalUsers = $this->user->countAll();
+        $totalMessages = count($messages);
+        $totalCalories = $this->meal->getTotalCalories();
+        $mealsPerUser = $this->meal->getMealsPerUser();
+        $avgMeals = $this->meal->getAverageMealsPerUser();
+        $avgCalories = $this->meal->getAverageCalories();
+
+        if (file_exists($file)) {
+            $lines = file($file, FILE_IGNORE_NEW_LINES);
+            $totalMessages = count($lines);
+        }
+
         $result = $this->meal->getAllAdmin();
         require 'views/admin.php';
     }
