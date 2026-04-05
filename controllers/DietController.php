@@ -87,3 +87,4 @@ class DietController {
         require_once 'views/diet.php';
     }
 }
+?>

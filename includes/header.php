@@ -26,6 +26,7 @@
                     <li class="nav-item"><a class="nav-link" href="index.php?page=diet">Jedálniček</a></li>
                     <li class="nav-item"><a class="nav-link" href="index.php?page=exercise">Šport</a></li>
                     <li class="nav-item"><a class="nav-link" href="index.php?page=contact">Kontakt</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.php?page=sleep">Spánok</a></li>
                     <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
                         <li class="nav-item">
                             <a class="nav-link" href="index.php?page=admin">Administrácia</a>

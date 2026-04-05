@@ -43,3 +43,4 @@ class User {
     return $stmt->fetch(PDO::FETCH_ASSOC)['total'];
     }
 }
+?>

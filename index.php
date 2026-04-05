@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['page']) && $_GET['page'
 
 $page = $_GET['page'] ?? 'home';
 
-$allowedPages = ['home', 'diet', 'exercise', 'contact', 'login', 'register', 'logout', 'thankyou', 'admin'];
+$allowedPages = ['home', 'diet', 'exercise', 'contact', 'login', 'register', 'logout', 'thankyou', 'admin', 'sleep'];
 
 if (!in_array($page, $allowedPages)) {
     $page = 'home';
@@ -65,6 +65,12 @@ if ($page === 'diet') {
 
     require_once 'controllers/AdminController.php';
     $controller = new AdminController();
+    $controller->index();
+
+} elseif ($page === 'sleep') {
+
+    require_once 'controllers/SleepController.php';
+    $controller = new SleepController();
     $controller->index();
 
 } else {

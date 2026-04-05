@@ -170,3 +170,4 @@ class Meal {
     return round($stmt->fetch(PDO::FETCH_ASSOC)['avg_calories'], 2);
     }
 }
+?>

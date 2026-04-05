@@ -73,6 +73,7 @@
                         Kvalitný spánok regeneruje telo aj myseľ. Ovplyvňuje koncentráciu,
                         pamäť, imunitu a emocionálnu stabilitu. Je to nevyhnutná súčasť zdravia.
                     </p>
+                    <a href="index.php?page=sleep" class="btn btn-primary mt-auto w-auto align-self-start">Prejsť na stránku</a>
                 </div>
             </div>
         </div>
