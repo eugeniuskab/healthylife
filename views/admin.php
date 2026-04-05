@@ -72,4 +72,36 @@
             <?php echo $editMeal ? 'Upraviť' : 'Pridať'; ?>
         </button>
     </form>
+
+    <h3 class="mt-5">Správy od používateľov</h3>
+
+    <?php if (!empty($messages)) : ?>
+
+    <table class="table table-striped mt-3 table-rounded">
+        <thead class="table-dark">
+            <tr>
+                <th>Meno</th>
+                <th>Email</th>
+                <th>Správa</th>
+                <th>Dátum</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <?php foreach ($messages as $msg) : ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($msg['name']); ?></td>
+                    <td><?php echo htmlspecialchars($msg['email']); ?></td>
+                    <td><?php echo htmlspecialchars($msg['message']); ?></td>
+                    <td><?php echo htmlspecialchars($msg['date']); ?></td>
+                </tr>
+            <?php endforeach; ?>
+
+        </tbody>
+    </table>
+
+    <?php else : ?>
+        <p class="mt-3">Žiadne správy zatiaľ.</p>
+    <?php endif; ?>
+
 </div>        

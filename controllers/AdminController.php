@@ -46,6 +46,47 @@ class AdminController {
             $editMeal = $this->meal->getByIdAdmin($_GET['edit']);
         }
 
+        $messages = [];
+        $file = 'data/messages.txt';
+
+        if (file_exists($file)) {
+
+            $lines = file($file, FILE_IGNORE_NEW_LINES);
+            foreach ($lines as $line) {
+
+                $parts = explode(' | ', $line);
+
+                $data = [
+                    'name' => '',
+                    'email' => '',
+                    'message' => '',
+                    'date' => ''
+                ];
+
+                foreach ($parts as $part) {
+
+                    if (str_starts_with($part, 'Meno:')) {
+                        $data['name'] = trim(str_replace('Meno:', '', $part));
+                    }
+
+                    if (str_starts_with($part, 'Email:')) {
+                        $data['email'] = trim(str_replace('Email:', '', $part));
+                    }
+
+                    if (str_starts_with($part, 'Správa:')) {
+                        $data['message'] = trim(str_replace('Správa:', '', $part));
+                    }
+
+                    if (str_starts_with($part, 'Dátum:')) {
+                        $date = trim(str_replace('Dátum:', '', $part));
+                        $data['date'] = trim($date, '[]');
+                    }
+                }
+
+                $messages[] = $data;
+            }
+        }
+
         $result = $this->meal->getAllAdmin();
         require 'views/admin.php';
     }

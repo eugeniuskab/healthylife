@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['page']) && $_GET['page'
     $message = $_POST['message'];
     $date = date('Y-m-d H:i:s');
 
-    $record = "[$date] Meno: $name | Email: $email | Správa: $message" . PHP_EOL;
+    $record = "Meno: $name | Email: $email | Správa: $message | Dátum: [$date]" . PHP_EOL;
 
     file_put_contents("data/messages.txt", $record, FILE_APPEND);
 
