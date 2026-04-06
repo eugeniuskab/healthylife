@@ -21,6 +21,7 @@ class Sleep {
         return $stmt;
     }
 
+    // user functions
     public function create($hours, $date, $user_id) {
         $query = "INSERT INTO " . $this->table . " (hours, date, user_id)
                   VALUES (:hours, :date, :user_id)";
@@ -44,6 +45,7 @@ class Sleep {
         return $stmt->execute();
     }
 
+    // admin dashboard analytics functions
     public function getAverageSleep($user_id) {
     $query = "SELECT AVG(hours) as avg_sleep 
               FROM " . $this->table . " 

@@ -45,7 +45,7 @@ class AuthController {
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['role'] = $user['role'];
 
-                header("Location: index.php?page=diet");
+                header("Location: index.php?page=home");
                 exit;
 
             } else {

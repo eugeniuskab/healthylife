@@ -5,7 +5,7 @@
         <div class="accordion-item">
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#c1">
-                    Drepy so šinkou (Barbell Squats)
+                    Drepy so činkou (Barbell Squats)
                 </button>
             </h2>
             <div id="c1" class="accordion-collapse collapse">
@@ -110,7 +110,7 @@
                 <button class="check-btn" data-ex="1"></button>
                 <img src="img/squats.png" class="card-img-top">
                 <div class="card-body">
-                    <h5>Drepy so šinkou</h5>
+                    <h5>Drepy so činkou</h5>
                     <p>Základný cvik pre spodnú časť tela.</p>
                 </div>
             </div>

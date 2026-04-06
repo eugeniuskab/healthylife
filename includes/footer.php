@@ -13,6 +13,7 @@
                     <li><a href="index.php?page=home">Jedálniček</a></li>
                     <li><a href="index.php?page=home">Šport</a></li>
                     <li><a href="index.php?page=home">Kontakt</a></li>
+                    <li><a href="index.php?page=sleep">Spánok</a></li>
                     </ul>
                 </div>
 
@@ -23,7 +24,7 @@
                 </div>
             </div>
             <hr>
-            <p class="text-center">&copy; 2025 Healthy Life</p>
+            <p class="text-center">&copy; 2026 Healthy Life</p>
         </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>

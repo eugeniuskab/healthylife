@@ -1,7 +1,7 @@
 <div class="container mt-4">
 
     <h2 class="mb-3">Prehľad systému</h2>
-
+    <!-- meals analytics -->
     <div class="row">
 
         <div class="col-md-4">
@@ -144,6 +144,7 @@
         </tbody>
     </table>
 
+    <!-- sleep analytics -->
     <div class="row mt-5">
         <div class="col-md-4">
             <div class="card text-center p-3 shadow">
@@ -201,6 +202,7 @@
         </tbody>
     </table>
 
+    <!-- user messages analytics -->
     <h3 class="mt-5">Správy od používateľov</h3>
     <?php if (!empty($messages)) : ?>
 

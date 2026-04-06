@@ -17,6 +17,7 @@ class Meal {
         return $stmt;
     }
 
+    // user functions
     public function create($meal_type, $meal_description, $calories, $user_id) {
     $query = "INSERT INTO " . $this->table . " (meal_type, meal_description, calories, user_id) 
               VALUES (:meal_type, :meal_description, :calories, :user_id)";
@@ -70,6 +71,7 @@ class Meal {
     return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    // admin functions
     public function getAllAdmin() {
     $query = "SELECT meals.*, users.username 
               FROM meals
@@ -117,6 +119,7 @@ class Meal {
     return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    // admin dashboard analytics functions
     public function countAll() {
     $query = "SELECT COUNT(*) as total FROM " . $this->table;
     $stmt = $this->conn->prepare($query);

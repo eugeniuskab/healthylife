@@ -75,7 +75,7 @@
         </button>
     </form>
 
-    <!-- tabuľka -->
+    <!-- tabuľka info -->
     <h3 class="mt-5">Odporúčané potraviny</h3>
 
     <table class="table table-striped mt-3 table-rounded">
