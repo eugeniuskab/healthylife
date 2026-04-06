@@ -1,6 +1,32 @@
 <div class="container mt-4">
 
-    <h2>Spánok</h2>
+    <h2 class="mb-3">Spánok</h2>
+
+    <div class="row mb-4">
+
+        <div class="col-md-4">
+            <div class="card text-center p-3 shadow">
+                <h5>Priemerný spánok</h5>
+                <h2><?php echo $avgSleep; ?> h</h2>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-center p-3 shadow">
+                <h5>Tento mesiac</h5>
+                <h2><?php echo $monthlySleep; ?> h</h2>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-center p-3 shadow">
+                <h5>Posledných 7 dní</h5>
+                <h2><?php echo $weeklySleep; ?> h</h2>
+            </div>
+        </div>
+
+    </div>
+
     <table class="table table-striped mt-3 table-rounded">
         <thead class="table-dark">
             <tr>

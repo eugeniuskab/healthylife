@@ -3,6 +3,7 @@
 require_once 'helpers/Auth.php';
 require_once 'models/Meal.php';
 require_once 'models/User.php';
+require_once 'models/Sleep.php';
 
 class AdminController {
 
@@ -16,6 +17,7 @@ class AdminController {
 
         $this->meal = new Meal($conn);
         $this->user = new User($conn);
+        $this->sleep = new Sleep($conn);
     }
 
     public function index() {
@@ -91,9 +93,17 @@ class AdminController {
         $totalUsers = $this->user->countAll();
         $totalMessages = count($messages);
         $totalCalories = $this->meal->getTotalCalories();
+
         $mealsPerUser = $this->meal->getMealsPerUser();
         $avgMeals = $this->meal->getAverageMealsPerUser();
         $avgCalories = $this->meal->getAverageCalories();
+
+        $globalSleep = $this->sleep->getGlobalAverageSleep();
+        $totalSleepEntries = $this->sleep->getTotalSleepEntries();
+        $topSleepers = $this->sleep->getTopSleepers();
+
+        $topSleepersArray = $topSleepers->fetchAll(PDO::FETCH_ASSOC);
+        $topUser = $topSleepersArray[0] ?? null;
 
         if (file_exists($file)) {
             $lines = file($file, FILE_IGNORE_NEW_LINES);

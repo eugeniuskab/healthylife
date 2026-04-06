@@ -1,6 +1,7 @@
 <div class="container mt-4">
 
-    <h2 class="mb-4">Prehľad systému</h2>
+    <h2 class="mb-3">Prehľad systému</h2>
+
     <div class="row">
 
         <div class="col-md-4">
@@ -140,6 +141,63 @@
                 </tr>
             <?php endwhile; ?>
 
+        </tbody>
+    </table>
+
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="card text-center p-3 shadow">
+                <h5>Priemerný spánok (všetci)</h5>
+                <h2><?php echo $globalSleep; ?> h</h2>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-center p-3 shadow">
+                <h5>Záznamy spánku</h5>
+                <h2><?php echo $totalSleepEntries; ?></h2>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-center p-3 shadow">
+                <h5>Top používateľ</h5>
+                <h2>
+                    <?php if ($topUser): ?>
+                        🏆 <?php echo $topUser['username']; ?>
+                    <?php else: ?>
+                        —
+                    <?php endif; ?>
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="mt-4">Top spánok</h3>
+    <table class="table table-striped mt-3 table-rounded">
+        <thead class="table-dark">
+            <tr>
+                <th style="width: 50%;">Používateľ</th>
+                <th style="width: 50%;">Priemerný spánok</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($topSleepersArray as $index => $row) : ?>
+                <tr>
+                    <td>
+                        <?php 
+                            if ($index == 0) echo "🥇 ";
+                            elseif ($index == 1) echo "🥈 ";
+                            elseif ($index == 2) echo "🥉 ";
+                        ?>
+                        <?php echo $row['username']; ?>
+                    </td>
+
+                    <td>
+                        <?php echo round($row['avg_sleep'], 2); ?> h
+                    </td>
+                </tr>
+            <?php endforeach; ?>
         </tbody>
     </table>
 

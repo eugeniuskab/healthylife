@@ -40,6 +40,9 @@ class SleepController {
         }
 
         $result = $this->sleep->getAll($user_id);
+        $avgSleep = $this->sleep->getAverageSleep($user_id);
+        $monthlySleep = $this->sleep->getMonthlySleep($user_id);
+        $weeklySleep = $this->sleep->getWeeklyAverage($user_id);
 
         require 'views/sleep.php';
     }
