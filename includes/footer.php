@@ -10,9 +10,9 @@
                     <h5>Stránky</h5>
                     <ul class="list-unstyled">
                     <li><a href="index.php?page=home">Domov</a></li>
-                    <li><a href="index.php?page=home">Jedálniček</a></li>
-                    <li><a href="index.php?page=home">Šport</a></li>
-                    <li><a href="index.php?page=home">Kontakt</a></li>
+                    <li><a href="index.php?page=diet">Jedálniček</a></li>
+                    <li><a href="index.php?page=exercise">Šport</a></li>
+                    <li><a href="index.php?page=contact">Kontakt</a></li>
                     <li><a href="index.php?page=sleep">Spánok</a></li>
                     </ul>
                 </div>
