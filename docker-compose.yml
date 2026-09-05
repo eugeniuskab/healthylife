@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  # 1. Веб-приложение (PHP + Apache)
+  web:
+    build: .
+    container_name: healthylife_web
+    ports:
+      - "8080:80"
+    environment:
+      DB_HOST: db
+      DB_NAME: healthylife
+      DB_USER: healthylife_user
+      DB_PASSWORD: userpassword
+    depends_on:
+      - db
+    restart: always
+
+  # 2. Сервер базы данных (MySQL)
+  db:
+    image: mysql:8.0
+    container_name: healthylife_db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: healthylife
+      MYSQL_USER: healthylife_user
+      MYSQL_PASSWORD: userpassword
+    volumes:
+      # Автоматическое наполнение базы при первом запуске:
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      # Сохранение данных на диске хоста (чтобы они не стирались при остановке контейнера):
+      - db_data:/var/lib/mysql
+    restart: always
+
+volumes:
+  db_data:
