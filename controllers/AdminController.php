@@ -9,6 +9,7 @@ class AdminController {
 
     private $meal;
     private $user;
+    private $sleep;
 
     public function __construct() {
 
